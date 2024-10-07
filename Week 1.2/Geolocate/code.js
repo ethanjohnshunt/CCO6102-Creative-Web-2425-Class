@@ -15,6 +15,7 @@ function getLocation() {
 }
 
 function showPosition(position) {
+  console.log(position.coords.latitude)
   res.innerHTML = "Latitude: " + position.coords.latitude +
   "<br>Longitude: " + position.coords.longitude;
   clearInterval(countInterval);

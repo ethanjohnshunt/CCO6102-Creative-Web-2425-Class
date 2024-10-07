@@ -1,26 +1,26 @@
-let a=[1,2,3,4,5]
+// let a=[1,2,3,4,5]
 
-a.push(6)
-a.unshift(0)
+// a.push(6)
+// a.unshift(0)
 
-let course1={
-    name: "Dave",
-    course: "Digital Storytelling",
-    numberOfStudents: 25
-}
+// let course1={
+//     name: "Dave",
+//     course: "Digital Storytelling",
+//     numberOfStudents: 25
+// }
 
-let course2={
-    name: "Jake",
-}
+// let course2={
+//     name: "Jake",
+// }
 
-let courses=[course1, course2]
+// let courses=[course1, course2]
 
 let formResults=[]
 
 function submitted(event){
     event.preventDefault()
     console.log(event.target.fname.value)
-    console.log(event.target.elements)
+    // console.log(event.target.elements)
     let newFormData={
         name: event.target.fname.value,
         colour: event.target.fcolour.value,
