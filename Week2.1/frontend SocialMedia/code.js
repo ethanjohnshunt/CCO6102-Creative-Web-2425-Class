@@ -7,6 +7,20 @@ const user={
 }
 console.log(user);
 
+//basic post database (empty)
+let recentPosts=[]
+let maxRecents=3
+let nextPostID=0
+//a 'schema' for posts
+// myPost={
+//     postID: nextPostID++, //integer
+//     userID: user.userID, //integer
+//     post: currentWords, //string
+//     likes: 0, //integer
+//     time: Date.now() //Date object
+// }
+
+
 //get a handle and add event listeners to the word input form
 let words=document.querySelector('#words')
 words.addEventListener('input',checkWords)
@@ -17,10 +31,6 @@ let currentWords=''
 let postButton=document.querySelector('#postwords')
 postButton.addEventListener('click',postWords)
 
-//basic post database (empty)
-let recentPosts=[]
-let maxRecents=3
-let nextPostID=0
 
 
 //get a handle on the recent-posts UL
