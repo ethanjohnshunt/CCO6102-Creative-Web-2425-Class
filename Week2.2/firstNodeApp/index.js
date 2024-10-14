@@ -30,7 +30,7 @@ app.post('/newpost', (request, response)=>{
         user: 'user0',
         message: request.body.message
     }
-    postData.push(newPost)
+    postData.unshift(newPost)
     console.log(postData)
     response.sendFile(path.join(__dirname, '/views', 'app.html'))
 
