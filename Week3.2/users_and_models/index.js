@@ -2,6 +2,9 @@ const express= require('express')
 const app=express()
 const path=require('path')
 
+const posts=require('./models/posts.js')
+
+
 app.listen(3000, ()=>{
     console.log('listening on port 3000')
 })
@@ -30,32 +33,19 @@ app.get('/logout', (request, response)=>{
 
 
 app.get('/getposts', (request, response)=>{
-    response.json({posts: postData})
+    response.json({posts: posts.getAllPosts()})
 })
 
 app.post('/newpost', (request, response)=>{
     // console.log(request.body.message)
-    let newPost={
-        postid: nextPostID++,
-        user: 'user0',
-        message: request.body.message
-    }
-    postData.unshift(newPost)
-    console.log(postData)
+    // let newPost={
+    //     postid: posts.nextPostID++,
+    //     user: 'user0',
+    //     message: request.body.message
+    // }
+    // posts.postData.unshift(newPost)
+    console.log(posts.postData)
     response.sendFile(path.join(__dirname, '/views', 'app.html'))
 
 })
 
-let nextPostID=2
-let postData=[
-    {
-        postid:0,
-        user: 'user1',
-        message: 'I am Groot'
-    },{
-        postid:1,
-        user: 'user2',
-        message: 'It is Thursday'
-    }
-
-]
