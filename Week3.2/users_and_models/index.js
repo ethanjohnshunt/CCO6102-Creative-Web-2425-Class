@@ -33,7 +33,7 @@ app.get('/logout', (request, response)=>{
 
 
 app.get('/getposts', (request, response)=>{
-    response.json({posts: posts.getAllPosts()})
+    response.json({posts: posts.getLastNPosts(3).reverse()})
 })
 
 app.post('/newpost', (request, response)=>{
@@ -44,7 +44,8 @@ app.post('/newpost', (request, response)=>{
     //     message: request.body.message
     // }
     // posts.postData.unshift(newPost)
-    console.log(posts.postData)
+    posts.addNewPost('userX', request.body.message)
+    // console.log(posts.postData)
     response.sendFile(path.join(__dirname, '/views', 'app.html'))
 
 })
