@@ -4,6 +4,9 @@ const path=require('path')
 
 const posts=require('./models/posts.js')
 
+const users=require('./models/users.js')
+console.log(users.getUsers())
+
 
 app.listen(3000, ()=>{
     console.log('listening on port 3000')
@@ -24,6 +27,14 @@ app.get('/login', (request, response)=>{
 
 app.get('/register', (request, response)=>{
     response.sendFile(path.join(__dirname, '/views', 'register.html'))
+})
+
+app.post('/register', (request, response)=>{
+    if(users.newUser(request.body.username, request.body.password)){
+        response.sendFile(path.join(__dirname, '/views', 'login.html'))
+        console.log(users.getUsers())
+    }
+    response.sendFile(path.join(__dirname, '/views', 'registration_failed.html'))
 })
 
 app.get('/logout', (request, response)=>{
