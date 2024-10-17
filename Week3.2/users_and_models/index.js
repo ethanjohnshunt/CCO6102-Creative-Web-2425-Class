@@ -11,13 +11,23 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended: false}))
 
 
-app.get('/thursday', (request, response)=>{
-    response.sendFile(path.join(__dirname, '/views', 'thursday.html'))
-})
-
 app.get('/app', (request, response)=>{
     response.sendFile(path.join(__dirname, '/views', 'app.html'))
 })
+
+app.get('/login', (request, response)=>{
+    response.sendFile(path.join(__dirname, '/views', 'login.html'))
+})
+
+app.get('/register', (request, response)=>{
+    response.sendFile(path.join(__dirname, '/views', 'register.html'))
+})
+
+app.get('/logout', (request, response)=>{
+    response.sendFile(path.join(__dirname, '/views', 'logout.html'))
+})
+
+
 
 app.get('/getposts', (request, response)=>{
     response.json({posts: postData})
