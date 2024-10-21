@@ -33,9 +33,21 @@ app.post('/register', (request, response)=>{
     if(users.newUser(request.body.username, request.body.password)){
         response.sendFile(path.join(__dirname, '/views', 'login.html'))
         console.log(users.getUsers())
+    } else {
+        response.sendFile(path.join(__dirname, '/views', 'registration_failed.html'))
     }
-    response.sendFile(path.join(__dirname, '/views', 'registration_failed.html'))
 })
+
+app.post('/login', (request, response)=>{
+   if(users.checkPassword(request.body.username, request.body.password)){
+        console.log('valid user')
+        response.sendFile(path.join(__dirname, '/views', 'app.html'))
+   } else {
+        console.log('invalid user')
+        response.sendFile(path.join(__dirname, '/views', 'notloggedin.html'))
+   }
+})
+
 
 app.get('/logout', (request, response)=>{
     response.sendFile(path.join(__dirname, '/views', 'logout.html'))

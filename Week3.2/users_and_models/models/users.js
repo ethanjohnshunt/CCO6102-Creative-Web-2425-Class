@@ -30,6 +30,7 @@ function checkPassword(username, password){
     if(foundUser){
         return foundUser.password==password
     }
+    return false
 }
 
 module.exports={
