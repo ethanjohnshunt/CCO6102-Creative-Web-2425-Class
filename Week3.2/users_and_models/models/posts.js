@@ -24,6 +24,7 @@ function addNewPost(user, message){
 
 function getAllPosts(){
     return postData
+    console.log(postData)
 }
 
 function getLastNPosts(){

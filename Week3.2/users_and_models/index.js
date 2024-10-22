@@ -3,6 +3,9 @@ const app=express()
 const path=require('path')
 
 const posts=require('./models/posts.js')
+const users=require('./models/users.js')
+
+
 
 
 app.listen(3000, ()=>{
@@ -19,6 +22,7 @@ app.get('/app', (request, response)=>{
 })
 
 app.get('/login', (request, response)=>{
+
     response.sendFile(path.join(__dirname, '/views', 'login.html'))
 })
 
@@ -30,6 +34,16 @@ app.get('/logout', (request, response)=>{
     response.sendFile(path.join(__dirname, '/views', 'logout.html'))
 })
 
+app.post('/login', (request, response)=>{
+    if(users.checkPassword(request.body.username, request.body.password)){
+        response.sendFile(path.join(__dirname, '/views', 'app.html'))
+        console.log(uses.getUsers)
+    }
+    response.sendFile(path.join(__dirname, '/views', 'notloggedin.html'))
+
+})
+
+console.log(users.getUsers())
 
 
 app.get('/getposts', (request, response)=>{
