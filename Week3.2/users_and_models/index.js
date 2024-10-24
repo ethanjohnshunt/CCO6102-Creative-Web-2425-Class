@@ -7,6 +7,9 @@ const users=require('./models/users.js')
 
 
 
+const users=require('./models/users.js')
+console.log(users.getUsers())
+
 
 app.listen(3000, ()=>{
     console.log('listening on port 3000')
@@ -30,6 +33,26 @@ app.get('/register', (request, response)=>{
     response.sendFile(path.join(__dirname, '/views', 'register.html'))
 })
 
+app.post('/register', (request, response)=>{
+    if(users.newUser(request.body.username, request.body.password)){
+        response.sendFile(path.join(__dirname, '/views', 'login.html'))
+        console.log(users.getUsers())
+    } else {
+        response.sendFile(path.join(__dirname, '/views', 'registration_failed.html'))
+    }
+})
+
+app.post('/login', (request, response)=>{
+   if(users.checkPassword(request.body.username, request.body.password)){
+        console.log('valid user')
+        response.sendFile(path.join(__dirname, '/views', 'app.html'))
+   } else {
+        console.log('invalid user')
+        response.sendFile(path.join(__dirname, '/views', 'notloggedin.html'))
+   }
+})
+
+
 app.get('/logout', (request, response)=>{
     response.sendFile(path.join(__dirname, '/views', 'logout.html'))
 })
@@ -47,7 +70,7 @@ console.log(users.getUsers())
 
 
 app.get('/getposts', (request, response)=>{
-    response.json({posts: posts.getAllPosts()})
+    response.json({posts: posts.getLastNPosts(3).reverse()})
 })
 
 app.post('/newpost', (request, response)=>{
@@ -58,7 +81,8 @@ app.post('/newpost', (request, response)=>{
     //     message: request.body.message
     // }
     // posts.postData.unshift(newPost)
-    console.log(posts.postData)
+    posts.addNewPost('userX', request.body.message)
+    // console.log(posts.postData)
     response.sendFile(path.join(__dirname, '/views', 'app.html'))
 
 })

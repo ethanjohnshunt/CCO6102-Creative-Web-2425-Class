@@ -27,8 +27,8 @@ function getAllPosts(){
     console.log(postData)
 }
 
-function getLastNPosts(){
-    return postData.slice(-3)
+function getLastNPosts(n=3){
+    return postData.slice(-n)
 }
 
 function likePost(){
