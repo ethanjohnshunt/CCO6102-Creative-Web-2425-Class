@@ -1,6 +1,6 @@
 const apikey='4463216da4224c8387d144501241610'
 // const queryurl='http://api.weatherapi.com/v1/current.json?key=4463216da4224c8387d144501241610&q=Bristol&aqi=no'
-const City='Bristol'
+const City='Bath'
 const queryurl='http://api.weatherapi.com/v1/current.json'+
                 '?'+'key='+apikey+
                 '&'+'q='+City+

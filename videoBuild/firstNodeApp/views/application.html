@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to my app</h1>
+    <form action="/newpost" method="POST">
+        <label for="message">Message</label>
+        <input type="text" id="message" name="message">
+        <input type="submit" value="post your message">
+    </form>
+    <br>
+    <h4>Recent posts</h4>
+    <ul id="recent-posts">
+        <li>a thing</li>
+        <li>another thing</li>
+    </ul>
+</body>
+<script>
+    const recentPosts=document.getElementById('recent-posts')
+
+    fetch('/data')
+        .then(response=>response.json())
+        .then(fetchedData=>{
+            console.log(fetchedData)
+            processData(fetchedData.posts)
+        })
+
+    function processData(data){
+        recentPosts.innerHTML=""
+        data.forEach(post=>{
+            let li=document.createElement('li')
+            li.innerText=post.message +' - by user: '+ post.user
+            recentPosts.appendChild(li)
+        })
+    }
+</script>
+</html>

@@ -21,7 +21,7 @@ connection.onmessage = function (e) {
 	if(parsed.rgb){
 		document.body.style.backgroundColor=parsed.rgb;
 	}
-};
+}
 
 function sendRGB() {
 	var r = parseInt(document.getElementById('r').value).toString(16);
